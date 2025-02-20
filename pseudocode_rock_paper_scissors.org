@@ -64,7 +64,7 @@ FUNCTION main():
                         ELSEIF computerOption == "scissors":
                                 PRINT "Computer wins!"
                         ENDIF
-        condition3: "scrissors"
+        condition3: "scissors"
                         IF computerOption == "rock":
                                 PRINT "Computer wins!"
                         ELSEIF computerOption == "paper":
