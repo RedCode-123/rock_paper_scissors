@@ -1,5 +1,38 @@
 "use strict"
 
+let playerOption = "";
+// playerOption = prompt("Select: 'rock', 'paper', 'scissors'");
+const options = document.querySelector("#options");
+options.addEventListener("click", (event) => {
+    playerOption = event.target.id;
+    main()
+});
+
+const outputMsg = document.querySelector("#output-msg");
+// Crear result
+const result = document.createElement("div");
+result.innerText = "Ready to play?";
+// Agregar el resultados
+outputMsg.appendChild(result);
+
+let rounds = 0;
+let score = {
+    player: 0,
+    computer: 0
+};
+
+const roundsText = document.querySelector(".rounds");
+roundsText.innerText = "Round: 0"
+const playerScore = document.querySelector(".player-score");
+playerScore.innerText = "Score: 0"
+const computerScore = document.querySelector(".computer-score");
+computerScore.innerText = "Score: 0"
+
+const playerImg = document.querySelector(".player-img");
+const computerImg = document.querySelector(".computer-img");
+playerImg.setAttribute("src", "./images/"+ randomOption() +".png");
+computerImg.setAttribute("src", "./images/"+ randomOption() +".png");
+
 function validOption(option) {
         option = option.toLowerCase();
         if (option === 'rock' || option === 'paper' || option === 'scissors') {
@@ -30,12 +63,37 @@ function randomOption() {
     };
     return options[randomNumber(1,3)];
 }
+function showResult(player, computer) {
+    rounds += 1;
+
+    roundsText.innerText = "Round: " + rounds;
+    playerScore.innerText = "Score: " + score.player;
+    computerScore.innerText = "Score: "+ score.computer;
+
+
+    playerImg.setAttribute("src", "./images/"+player +".png");
+    computerImg.setAttribute("src", "./images/"+computer +".png");
+    let msg = " ";
+
+    if (score.player === 5 || score.computer === 5) {
+        if(score.player > score.computer){
+            msg = "You win!";
+        } else if (score.computer > score.player){
+            msg = "Computer win!";
+        } else {
+            msg = "Draw!";
+        }
+        rounds = 0;
+        score.player = 0;
+        score.computer = 0;
+    }
+    result.innerText = msg;
+    msg = " ";
+
+}
 
 function main() {
-    let playerOption = "";
     let computerOption = "";
-
-    playerOption = prompt("Select: 'rock', 'paper', 'scissors'");
 
     if (validOption(playerOption)) {
         // countDown(3)
@@ -47,29 +105,45 @@ function main() {
         case 'rock':
             if (computerOption === 'rock') {
                 console.log('Draw!');
-            } else if( computerOption === 'paper' ) {
+                showResult(playerOption,computerOption)
+
+        } else if( computerOption === 'paper' ) {
                 console.log('Computer wins!');
+                score.computer += 1;
+                showResult(playerOption,computerOption)
+
             } else if( computerOption === 'scissors' ) {
                 console.log('You win!');
-
+                score.player += 1;
+                showResult(playerOption,computerOption)
             }
             break;
         case 'paper':
             if (computerOption === 'rock') {
                 console.log('You win!');
+                score.player += 1;
+                showResult(playerOption,computerOption)
             } else if( computerOption === 'paper' ) {
                 console.log('Draw!');
+                showResult(playerOption,computerOption)
             } else if( computerOption === 'scissors' ) {
                 console.log('Computer wins!');
+                score.computer += 1;
+                showResult(playerOption,computerOption, 'Computer wins!')
             }
             break;
         case 'scissors':
             if (computerOption === 'rock') {
                 console.log('Computer wins!');
+                score.computer += 1;
+                showResult(playerOption,computerOption, 'Computer wins!')
             } else if( computerOption === 'paper' ) {
                 console.log('You win!');
+                score.player += 1;
+                showResult(playerOption,computerOption, 'You win!')
             } else if( computerOption === 'scissors' ) {
                 console.log('Draw!');
+                showResult(playerOption,computerOption, "Draw!")
             }
 
             break;
@@ -80,15 +154,3 @@ function main() {
     }
 }
 
-let keepgoing = true;
-while (keepgoing) {
-    main()
-    let keepPlaying = prompt("keep playing (y/n)?");
-    console.clear();
-    keepPlaying = keepPlaying.toLowerCase();
-    if(keepPlaying === "n"){
-        console.log("Done!");
-        keepgoing = false;
-    }
-
-}

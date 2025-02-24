@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+.center {
+    display: grid;
+    place-items: center;
+}
+
+.main {
+    width: 100dvw;
+}
+
+.contenders {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    width: 90dvw;
+
+}
+
+.contenders > .player,
+.contenders > .computer {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+
+.player-choice, .comp-choice {
+    width: 300px;
+    height: 200px;
+    border: medium solid black;
+
+}
+
+#options {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    width: 90dvw;
+
+}
+
+.computer-img, .player-img {
+    height: 180px;
+    width: 280px;
+    object-fit: contain;
+}

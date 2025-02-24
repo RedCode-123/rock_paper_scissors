@@ -6,12 +6,49 @@
         <title>ROCK PAPER SCISSORS</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <link rel="stylesheet" href="style.css">
         <!-- Place favicon.ico in the root directory -->
 
     </head>
     <body>
+        <main id="main" class="center">
+            <h1>Rock, paper, scissors</h1>
+            <h2 class= "rounds"></h2>
+            <section class="contenders">
+                <div class="player">
+                    <spam>Player</spam>
+                    <div class="player-choice center">
+                        <img class="player-img">
+                    </div >
+                    <spam class="player-score">
+
+                    </spam>
+                </div>
+
+
+                <div class="computer">
+                    <spam>Computer</spam>
+                    <div class="comp-choice center">
+                        <img class="computer-img">
+                    </div>
+                    <spam class="computer-score">
+
+                    </spam>
+                </div>
+
+            </section>
+
+            <section id="options">
+                <button type="button" id="rock">Rock</button>
+                <button type="button" id="paper">Paper</button>
+                <button type="button" id="scissors">Scissors</button>
+            </section>
+
+            <section id="output-msg">
+
+            </section>
+        </main>
 
         <script src="./main.js" type="text/javascript">
 
